@@ -1,0 +1,15 @@
+<div class="song-row">
+    <div><img src="{{imageurl}}" height="50px" width="50px"></div>
+    <div class="song-item-name-column vertical-center"><span>{{songname}}</span></div>
+
+   
+    <div class="vertical-center">
+        <!-- {{rating}} -->
+        <!-- <button (click)="RateFiveStar()">Rate 5 Star</button> -->
+        <rating (onRatingChange)="ChangeRating($event)" rating="{{rating}}"></rating>
+    </div>    
+</div>
+
+
+
+<!-- <input type="text" (change)="InputValueChanged($event)"> -->

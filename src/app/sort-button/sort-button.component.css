@@ -1,0 +1,9 @@
+.sort-button {
+    background-color: #1b5cc9;
+    border: none;
+    height: 30px;
+    border-radius: -10px;
+    font-weight: 700;
+    color: white;
+    margin-right: 10px;
+}

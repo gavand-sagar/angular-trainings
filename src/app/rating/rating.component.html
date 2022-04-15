@@ -1,0 +1,51 @@
+<!-- <div >
+{{GetRating()}}
+
+&#9733;
+
+</div> -->
+
+
+
+<!-- <div [innerHTML]="GetRating()"></div> -->
+
+
+<span (click)="ChangeRating(1)" class="{{GetClass(1)}}">&#9733;</span>
+<span (click)="ChangeRating(2)" class="{{GetClass(2)}}"> &#9733;</span>
+<span (click)="ChangeRating(3)" class="{{GetClass(3)}}"> &#9733;</span>
+<span (click)="ChangeRating(4)" class="{{GetClass(4)}}"> &#9733;</span>
+<span (click)="ChangeRating(5)" class="{{GetClass(5)}}"> &#9733;</span>
+
+
+
+<!-- <span (click)="ChangeRating(1)" *ngIf=" '1' <= rating" class="blue">&#9733;</span>
+<span (click)="ChangeRating(1)" *ngIf=" '1' > rating" class="gray">&#9733;</span>
+
+<span (click)="ChangeRating(1)" *ngIf=" '2' <= rating" class="blue">&#9733;</span>
+<span (click)="ChangeRating(1)" *ngIf=" '3' > rating" class="gray">&#9733;</span>
+
+<span (click)="ChangeRating(1)"*ngIf=" '3' <= rating" class="blue">&#9733;</span>
+<span (click)="ChangeRating(1)" *ngIf=" '3' > rating" class="gray">&#9733;</span>
+
+<span (click)="ChangeRating(1)" *ngIf=" '4' <= rating" class="blue">&#9733;</span>
+<span (click)="ChangeRating(1)" *ngIf=" '4' > rating" class="gray">&#9733;</span>
+
+<span (click)="ChangeRating(1)" *ngIf=" '5' <= rating" class="blue">&#9733;</span>
+<span (click)="ChangeRating(1)" *ngIf=" '5' > rating" class="gray">&#9733;</span> -->
+
+<!-- if(rating == 1)
+<span class="blue">&#9733;</span>
+<span class="gray">&#9733;</span>
+<span class="gray">&#9733;</span>
+<span class="gray">&#9733;</span>
+<span class="gray">&#9733;</span>
+
+if(rating == 2)
+<span class="blue">&#9733;</span>
+<span class="blue">&#9733;</span>
+<span class="gray">&#9733;</span>
+<span class="gray">&#9733;</span>
+<span class="gray">&#9733;</span> -->
+
+
+<!-- {{GetSpan()}} -->

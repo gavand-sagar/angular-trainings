@@ -1,0 +1,30 @@
+
+.song-row{
+    width: 500px;
+    height: 50px;
+    display: grid;
+    grid-template-columns: 50px 1fr 100px;
+    margin-top: 10px;
+    background-color: rgb(254, 254, 254);
+}
+
+.vertical-center{
+    justify-content: center;
+    align-items: center;
+    height: 50px;
+    display: flex;
+}
+
+
+.blue{
+    color: rgb(47, 47, 139);
+}
+
+
+.gray{
+    color: lightgray;
+}
+
+span{
+    cursor: pointer;
+}

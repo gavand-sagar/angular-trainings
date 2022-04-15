@@ -1,0 +1,50 @@
+.song-row {
+    width: 500px;
+    height: 50px;
+    display: grid;
+    grid-template-columns: 50px 1fr 100px;
+    margin-top: 10px;
+    background-color: rgb(254, 254, 254);
+}
+
+.vertical-center {
+    justify-content: center;
+    align-items: center;
+    height: 50px;
+    display: flex;
+}
+
+
+
+/* 
+.song-item-column{
+    display: inline-block;
+    height:50px;
+}
+
+.song-item-image-column{
+    width: 50px;
+}
+
+
+
+.song-item-rating-column{
+    width: 100px;
+} */
+
+
+.song-row {
+    display: grid;
+    grid-template-columns: 50px 200px 100px;
+}
+
+.song-item-name-column {
+    text-align: center;
+}
+
+.vertical-center {
+    justify-content: center;
+    align-items: center;
+    height: 50px;
+    display: flex;
+}
