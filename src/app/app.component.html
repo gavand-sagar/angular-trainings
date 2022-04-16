@@ -10,6 +10,10 @@
 <song-item *ngFor="let song of GetSongs();let i = index" imageurl="{{song.image}}" songname="{{song.name}}"
     rating="{{song.rating}}" (onRatingChange)="SongRatingChange($event,i)"></song-item>
 
+
+<!-- <h1>{{GetName()}}</h1> -->
+
+
 <span *ngFor="let song of songs">{{song.name}} ---- {{song.rating}};;;;;;;</span>
 
 <!-- <sort-button displayText="Sort by Title" otherThing="asdfsaf"></sort-button>

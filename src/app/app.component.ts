@@ -40,13 +40,23 @@ export class AppComponent {
   // numbers: Person[] = [{ Name: "sagar" }, { Name : "saf"}, "Mike", "Tom"]
 
   GetSongs() {
+    // return this.songs
+
     if (this.filterText == '') {
       return this.songs
     } else {
-      return this.songs.filter(x => x.name.toLowerCase() == this.filterText.toLocaleLowerCase())
-
+      return this.songs.filter(x => x.name.toLowerCase().includes(this.filterText.toLowerCase()))
     }
   }
+
+
+  name: string = 'HELLO';
+
+  GetName(): string {
+    return this.name;
+  }
+
+  // Get
 
 
   filterText: string = '';
