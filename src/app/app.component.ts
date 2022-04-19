@@ -1,3 +1,4 @@
+import { HttpClient } from '@angular/common/http';
 import { Component } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 
@@ -8,220 +9,115 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 })
 export class AppComponent {
 
-  // isAdmin = false;
+  joke: string;
+  Clicked: boolean = false;
+  response: {}
 
+  /**
+   *
+   */
+  constructor(private http: HttpClient) {
 
-
-  userForm: FormGroup;
-
-  constructor(private formBuilder: FormBuilder) {
-    this.userForm = this.formBuilder.group({
-      username: ['', [Validators.required, Validators.minLength(4), Validators.email]],
-      password: ['']
-    })
   }
+  FetchAJoke() {
+    this.Clicked = true;
+    this.joke = ''
+    this.http.get('https://randomuser.me/api/').subscribe((response: any) => {
+      this.response = response;
+      let userResponse = response as Root
 
-
-
-  // username: string = '';
-  // password: string = '';
-
-
-  // isErrorToShow: boolean = false;
-
-
-  users: any[] = [];
-
-
-  // IsUserNameLenght3(): boolean {
-  //   return this.username.length >= 3;
-  // }
-
-  AddUser() {
-
-    // if(this.userForm.get('username')?.invalid){
-    //   alert('invalid')
-    // }
-
-    // this.userForm.get('username')?.errors?.['required']
-
-    // this.userForm.get('username')?.errors?.['minLength']
-
-    // this.userForm.get('username')?.errors?.['minLength']
-
-    let username = this.userForm.get('username')?.value;
-    let password = this.userForm.get('password')?.value;
-
-
-    // this.isErrorToShow = true;
-    // if (this.username == '' || this.password == '') {
-    //   alert('pls enter all fields')
-    //   return
-    // }
-
-    this.users.push({
-      username: username,
-      password: password
+     this.response =  userResponse.results[0]
     })
 
 
-    // this.userForm.setValue('password', '')
-
-    this.userForm.reset()
-
-    // this.username = ''
-    // this.password = ''
   }
-
-  todaysDate: Date = new Date();
-
-  // GetUpperCaseUserName():string{
-  //   return this.username.toUpperCase();
-  // }
-
-
-  fetching = false;
-
-  FetchData() {
-    // this.fetching = !this.fetching
-    this.fetching = true;
-  }
-
-  //   ///
-
-  //   setTimeout(() => {
-  //     this.fetching = false
-  //   }, 2000)
-  // }
-
-
-  // names: string[] = ["Geetha", "Sagar", "Mike", "Tom"]
-
-
-  songs: any[] = [
-    { name: 'Stu', rating: '2', image: 'https://picsum.photos/200/300' },
-    { name: 'ABC', rating: '3', image: 'https://picsum.photos/200/300' },
-    { name: 'asf', rating: '1', image: 'https://picsum.photos/200/300' },
-    { name: 'qrtewr', rating: '5', image: 'https://picsum.photos/200/300' },
-    { name: 'l;kk;l', rating: '2', image: 'https://picsum.photos/200/300' },
-    { name: 'XYZ', rating: '4', image: 'https://picsum.photos/200/300' },
-  ]
-
-  // numbers: Person[] = [{ Name: "sagar" }, { Name : "saf"}, "Mike", "Tom"]
-
-  GetSongs() {
-    // return this.songs
-
-    if (this.filterText == '') {
-      return this.songs
-    } else {
-      return this.songs.filter(x => x.name.toLowerCase().includes(this.filterText.toLowerCase()))
-    }
-  }
-
-
-  name: string = 'HELLO';
-
-
-
-  GetName(): string {
-    return this.name;
-  }
-
-  // Get
-
-
-  filterText: string = '';
-
-  OnFilterTextChange(event: any) {
-    this.filterText = event.target.value
-  }
-
-
-  AddSomething() {
-    //this.names.push(this.inputSongValue);
-
-    // this.songs.push({ name: this.inputSongValue, rating: this.inputRatingValue, image: this.inputFileValue })
-
-    // this.inputValue = ""
-
-  }
-
-
-
-  newSongAdded(song: any) {
-    this.songs.push(song)
-  }
-
-
-
-  currentRating: string = ''
-
-
-  InputNumberChange(event: any) {
-
-    this.currentRating = event.target.value;
-  }
-
-  InputRatingChange(event: string) {
-
-    this.currentRating = event;
-  }
-
-
-  // GetIndex(name: string): number {
-  //   let index = this.names.findIndex(x => x == name);
-
-  //   return index;
-
-  // }
-
-
-  SortByRating() {
-    // alert()
-
-    this.songs.sort(compareWithRating);
-
-  }
-
-
-  SortByName() {
-    this.songs.sort(compareWithName);
-
-  }
-
-
-  SongRatingChange(event: any, index: number) {
-    this.songs[index].rating = event
-  }
-
 }
 
-
-class Person {
-  Name: string;
+export interface Root {
+  results: Result[]
+  info: Info
 }
 
-
-function compareWithRating(a: any, b: any) {
-  if (a.rating < b.rating) {
-    return -1;
-  }
-  if (a.rating > b.rating) {
-    return 1;
-  }
-  return 0;
+export interface Result {
+  gender: string
+  name: Name
+  location: Location
+  email: string
+  login: Login
+  dob: Dob
+  registered: Registered
+  phone: string
+  cell: string
+  id: Id
+  picture: Picture
+  nat: string
 }
 
-function compareWithName(a: any, b: any) {
-  if (a.name.toLowerCase() < b.name.toLowerCase()) {
-    return -1;
-  }
-  if (a.name.toLowerCase() > b.name.toLowerCase()) {
-    return 1;
-  }
-  return 0;
+export interface Name {
+  title: string
+  first: string
+  last: string
 }
 
+export interface Location {
+  street: Street
+  city: string
+  state: string
+  country: string
+  postcode: number
+  coordinates: Coordinates
+  timezone: Timezone
+}
 
-// objs.sort( compare );
+export interface Street {
+  number: number
+  name: string
+}
+
+export interface Coordinates {
+  latitude: string
+  longitude: string
+}
+
+export interface Timezone {
+  offset: string
+  description: string
+}
+
+export interface Login {
+  uuid: string
+  username: string
+  password: string
+  salt: string
+  md5: string
+  sha1: string
+  sha256: string
+}
+
+export interface Dob {
+  date: string
+  age: number
+}
+
+export interface Registered {
+  date: string
+  age: number
+}
+
+export interface Id {
+  name: string
+  value: any
+}
+
+export interface Picture {
+  large: string
+  medium: string
+  thumbnail: string
+}
+
+export interface Info {
+  seed: string
+  results: number
+  page: number
+  version: string
+}
