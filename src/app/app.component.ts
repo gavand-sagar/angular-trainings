@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 
 @Component({
   selector: 'sagar',
@@ -8,6 +9,75 @@ import { Component } from '@angular/core';
 export class AppComponent {
 
   // isAdmin = false;
+
+
+
+  userForm: FormGroup;
+
+  constructor(private formBuilder: FormBuilder) {
+    this.userForm = this.formBuilder.group({
+      username: ['', [Validators.required, Validators.minLength(4), Validators.email]],
+      password: ['']
+    })
+  }
+
+
+
+  // username: string = '';
+  // password: string = '';
+
+
+  // isErrorToShow: boolean = false;
+
+
+  users: any[] = [];
+
+
+  // IsUserNameLenght3(): boolean {
+  //   return this.username.length >= 3;
+  // }
+
+  AddUser() {
+
+    // if(this.userForm.get('username')?.invalid){
+    //   alert('invalid')
+    // }
+
+    // this.userForm.get('username')?.errors?.['required']
+
+    // this.userForm.get('username')?.errors?.['minLength']
+
+    // this.userForm.get('username')?.errors?.['minLength']
+
+    let username = this.userForm.get('username')?.value;
+    let password = this.userForm.get('password')?.value;
+
+
+    // this.isErrorToShow = true;
+    // if (this.username == '' || this.password == '') {
+    //   alert('pls enter all fields')
+    //   return
+    // }
+
+    this.users.push({
+      username: username,
+      password: password
+    })
+
+
+    // this.userForm.setValue('password', '')
+
+    this.userForm.reset()
+
+    // this.username = ''
+    // this.password = ''
+  }
+
+  todaysDate: Date = new Date();
+
+  // GetUpperCaseUserName():string{
+  //   return this.username.toUpperCase();
+  // }
 
 
   fetching = false;
@@ -51,6 +121,8 @@ export class AppComponent {
 
 
   name: string = 'HELLO';
+
+
 
   GetName(): string {
     return this.name;

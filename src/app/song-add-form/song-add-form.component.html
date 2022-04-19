@@ -1,9 +1,16 @@
-<input type="text" value="{{inputSongValue}}" (change)="InputValueChanged($event)">
-<br>
-<!-- <input type="text" value="{{inputRatingValue}}" (change)="RatingValueChanged($event)"> -->
-<rating (onRatingChange)="RatingValueChanged($event)"></rating>
-<br>
-<input type="file" (change)="FileValueChanged($event)">
-<br>
+<div>
+    <input type="text" value="{{inputSongValue}}" (change)="InputValueChanged($event)">
 
-<button (click)="AddSomething()">Add song</button>
+
+    
+    <!-- <input type="text" > -->
+    <br>
+    <!-- <input type="text" value="{{inputRatingValue}}" (change)="RatingValueChanged($event)"> -->
+    <!-- <rating (onRatingChange)="RatingValueChanged($event)"></rating>
+    <br>
+    <input type="file" (change)="FileValueChanged($event)"> -->
+    <br>
+
+    <button (click)="AddSomething()">Add song</button>
+
+</div>

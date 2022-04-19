@@ -11,12 +11,12 @@ export class AddSongComponent {
   inputRatingValue: string = "";
   inputFileValue: string = "";
 
+
   @Output()
   onFormAdd: EventEmitter<any> = new EventEmitter<any>();
 
 
   InputValueChanged(event: any) {
-
     this.inputSongValue = event.target.value;
   }
 
@@ -49,6 +49,7 @@ export class AddSongComponent {
   }
 
   AddSomething() {
+
 
     let song = { name: this.inputSongValue, rating: this.inputRatingValue, image: this.inputFileValue };
 
