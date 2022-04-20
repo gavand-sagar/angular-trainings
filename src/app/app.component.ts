@@ -1,5 +1,6 @@
+import { HttpClient } from '@angular/common/http';
 import { Component } from '@angular/core';
-import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { Observable } from 'rxjs';
 
 @Component({
   selector: 'sagar',
@@ -7,251 +8,83 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
   styleUrls: ['./app.component.css']
 })
 export class AppComponent {
+  fact: string;
 
-  // isAdmin = false;
-
-  // tempShared: FormBuilder
-
-  userForm: FormGroup;
+  loading: boolean = false;
 
 
-  constructor(private therInsanceGotFromDependancyInject: FormBuilder) {
-
-    //  this.tempShared = therInsanceGotFromDependancyInject;
-
-    // this.formBuilder
-
-    // formBuilder =  new FormBuilder(); 
-
-    // let formBuilder = new FormBuilder();
-
-    this.userForm = therInsanceGotFromDependancyInject.group({
-      username: ['', [Validators.required, Validators.minLength(4), Validators.email]],
-      password: ['Admin123', [Validators.required]],
-      language: ['',[Validators.required]]
-    });
-
-
-    this.userForm.valueChanges.subscribe(x => {
-      console.log(x)
-    })
-
-
-    // this.userForm.get('username')?.valueChanges.subscribe(x=>{
-    //   console.log(x)
-    // })
-
-
-  }
-
-
-  asfsaf() {
-    this.therInsanceGotFromDependancyInject
-  }
-
-
-
-  // username: string = '';
-  // password: string = '';
-
-
-  // isErrorToShow: boolean = false;
-
-
-  users: any[] = [];
-
-
-  // IsUserNameLenght3(): boolean {
-  //   return this.username.length >= 3;
-  // }
-
-  AddUser() {
-    // this.userForm.get('username')?.errors?.['required'] 
-
-
-    // if(this.userForm.get('username')?.invalid){
-    //   alert('invalid')
-    // }
-
-    // this.userForm.get('username')?.errors?.['required']
-
-    // this.userForm.get('username')?.errors?.['minLength']
-
-    // this.userForm.get('username')?.errors?.['minLength']
-
-    let username = this.userForm.get('username')?.value;
-    let password = this.userForm.get('password')?.value;
-
-
-    // this.isErrorToShow = true;
-    // if (this.username == '' || this.password == '') {
-    //   alert('pls enter all fields')
-    //   return
-    // }
-
-    this.users.push({
-      username: username,
-      password: password
-    })
-
-
-    // this.userForm.setValue('password', '')
-
-    this.userForm.reset()
-
-    // this.username = ''
-    // this.password = ''
-  }
-
-  todaysDate: Date = new Date();
-
-  // GetUpperCaseUserName():string{
-  //   return this.username.toUpperCase();
-  // }
-
-
-  fetching = false;
-
-  FetchData() {
-    // this.fetching = !this.fetching
-    this.fetching = true;
-  }
-
-  //   ///
-
-  //   setTimeout(() => {
-  //     this.fetching = false
-  //   }, 2000)
-  // }
-
-
-  // names: string[] = ["Geetha", "Sagar", "Mike", "Tom"]
-
-
-  songs: any[] = [
-    { name: 'Stu', rating: '2', image: 'https://picsum.photos/200/300' },
-    { name: 'ABC', rating: '3', image: 'https://picsum.photos/200/300' },
-    { name: 'asf', rating: '1', image: 'https://picsum.photos/200/300' },
-    { name: 'qrtewr', rating: '5', image: 'https://picsum.photos/200/300' },
-    { name: 'l;kk;l', rating: '2', image: 'https://picsum.photos/200/300' },
-    { name: 'XYZ', rating: '4', image: 'https://picsum.photos/200/300' },
-  ]
-
-  // numbers: Person[] = [{ Name: "sagar" }, { Name : "saf"}, "Mike", "Tom"]
-
-  GetSongs() {
-    // return this.songs
-
-    if (this.filterText == '') {
-      return this.songs
-    } else {
-      return this.songs.filter(x => x.name.toLowerCase().includes(this.filterText.toLowerCase()))
+  userInFormation: {
+    userImage: string,
+    userName: string,
+    userBirthDate: string
+  } = {
+      userBirthDate: '',
+      userImage: '',
+      userName: ''
     }
-  }
 
 
-  name: string = 'HELLO';
-
-
-
-  GetName(): string {
-    return this.name;
-  }
-
-  // Get
-
-
-  filterText: string = '';
-
-  OnFilterTextChange(event: any) {
-    this.filterText = event.target.value
-  }
-
-
-  AddSomething() {
-    //this.names.push(this.inputSongValue);
-
-    // this.songs.push({ name: this.inputSongValue, rating: this.inputRatingValue, image: this.inputFileValue })
-
-    // this.inputValue = ""
+  /**
+   *
+   */
+  constructor(private http: HttpClient) {
 
   }
 
 
+  FetchANewFact() {
 
-  newSongAdded(song: any) {
-    this.songs.push(song)
+    this.loading = true;
+
+
+    this.http.get('https://catfact.ninja/fact').subscribe(response => {
+
+
+      let convertedResponse: CatFactResponse = response as CatFactResponse;
+
+      this.fact = convertedResponse.fact;
+      this.loading = false;
+    });
   }
 
 
+  FetchANewUser() {
 
-  currentRating: string = ''
+    this.loading = true;
 
 
-  InputNumberChange(event: any) {
+    this.http.get('https://randomuser.me/api/').subscribe(response => {
 
-    this.currentRating = event.target.value;
+      // console.log(response)
+
+      let convertedResponse: UserResponse = response as UserResponse;
+
+      this.userInFormation.userName = convertedResponse.results[0].name.first + ' ' + convertedResponse.results[0].name.last
+      this.userInFormation.userImage = convertedResponse.results[0].picture.large;
+      // this.fact = convertedResponse.fact;
+      // this.loading = false;
+    });
   }
-
-  InputRatingChange(event: string) {
-
-    this.currentRating = event;
-  }
-
-
-  // GetIndex(name: string): number {
-  //   let index = this.names.findIndex(x => x == name);
-
-  //   return index;
-
-  // }
-
-
-  SortByRating() {
-    // alert()
-
-    this.songs.sort(compareWithRating);
-
-  }
-
-
-  SortByName() {
-    this.songs.sort(compareWithName);
-
-  }
-
-
-  SongRatingChange(event: any, index: number) {
-    this.songs[index].rating = event
-  }
-
 }
 
 
-class Person {
-  Name: string;
+class UserResponse {
+  results: { name: Name, picture: { medium: string; large: string }, dob: { date: string } }[]
 }
 
 
-function compareWithRating(a: any, b: any) {
-  if (a.rating < b.rating) {
-    return -1;
-  }
-  if (a.rating > b.rating) {
-    return 1;
-  }
-  return 0;
+class Name {
+  first: string;
+  last: string
 }
 
-function compareWithName(a: any, b: any) {
-  if (a.name.toLowerCase() < b.name.toLowerCase()) {
-    return -1;
-  }
-  if (a.name.toLowerCase() > b.name.toLowerCase()) {
-    return 1;
-  }
-  return 0;
-}
 
+
+class CatFactResponse {
+  fact: string;
+  length: number;
+}
 
 // objs.sort( compare );
+
+// {"fact":"Cats can predict earthquakes. We humans are not 100% sure how they do it. There are several different theories.","length":111}

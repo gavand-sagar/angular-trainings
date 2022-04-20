@@ -1,179 +1,24 @@
-<!-- <super-tune-header></super-tune-header> -->
-<!-- 
-<h1>SuperTune - Songs of the week</h1>
-<hr>
-<sort-button (click)="SortByName()" displayText="Sort by Song Name" otherThing="asdfsaf"></sort-button>
-<sort-button (click)="SortByRating()" displayText="Sort by Rating"></sort-button>
-<input type="text" placeholder="Search For a song..." (keyup)="OnFilterTextChange($event)">
+<!-- <h1>Fact Related to cats</h1>
 
-<hr>
-<song-item *ngFor="let song of GetSongs();let i = index" imageurl="{{song.image}}" songname="{{song.name}}"
-    rating="{{song.rating}}" (onRatingChange)="SongRatingChange($event,i)"></song-item>
+<div>
 
+    <button (click)="FetchANewFact()">Tell me a new fact</button>
+</div>
+<div>
 
- <h1>{{GetName()}}</h1> -->
+    <div *ngIf="loading" class="lds-dual-ring"></div>
+    <h1 *ngIf="!loading">{{fact}}</h1>
 
+</div>
 
-<!-- <span *ngFor="let song of songs">{{song.name}} ---- {{song.rating}};;;;;;;</span> -->
+<i class="fa fa-map-marker"></i> -->
 
-<!-- <sort-button displayText="Sort by Title" otherThing="asdfsaf"></sort-button>
-<sort-button displayText="Sort by Artist"></sort-button>
-<br>
-<br>
-<song-item imageurl="https://picsum.photos/200/300" songname="Vibe by Cookiee" rating="4"></song-item>
-<song-item imageurl="https://picsum.photos/200/300" songname="Ohter sadf" rating="2"></song-item>
- -->
 
+<div>
+    <img src="{{userInFormation.userImage}}">
+    {{userInFormation.userName}}
+</div>
+<div>
 
-<!-- <button class="{{fetching?'loading':''}}" (click)="FetchData()"> sadfsadf </button>
-
- <button ></button>
- <song-item *ngIf="fetching" imageurl="https://picsum.photos/200/300" songname="Ohter sadf" rating="2">
-
- </song-item> -->
-
-
-
-<!-- <div *ngFor="let name of names">
-
-
-    <span>
-        {{name}}
-    </span>
-
-
-</div> -->
-
-<!-- <song-item *ngFor="let name of names" imageurl="https://picsum.photos/200/300" songname="Ohter sadf" rating="2"></song-item> -->
-
-
-
-<!-- <add-song-form (onFormAdd)="newSongAdded($event)"></add-song-form>
-
-<hr>
-
-<song-item *ngFor="let song of songs;let i = index" imageurl="{{song.image}}" songname="{{song.name}}"
-    rating="{{song.rating}}"></song-item> -->
-
-<!-- 
-
-<div *ngFor="let name of names">
-    <span>
-        {{name}}
-    </span>
-</div>  -->
-
-
-<!-- <common-button text="Output expamp"></common-button> -->
-
-<!-- <rating rating="{{currentRating}}" (onRatingChange)="InputRatingChange($event)"></rating>
-
-<hr>
-<input type="number" value="{{currentRating}}" (change)="InputNumberChange($event)" min="1" max="5">
-
-<hr>
-<input type="text" value="{{currentRating}}">
-
-<hr>
-<span>{{currentRating}}</span> -->
-
-<!-- 
-<add-song-form (onFormAdd)="newSongAdded($event)"></add-song-form>
-
-<song-item *ngFor="let song of songs;let i = index" imageurl="{{song.image}}" songname="{{song.name}}"
-    rating="{{song.rating}}"></song-item> -->
-
-
-<!-- <h1>{{username}}</h1>
-
-<h1>{{ (username | uppercase) }}</h1>
-
-<h1>{{ (username | uppercase) }}</h1>
-
-<h1>{{ (username | lowercase) }}</h1>
-
-
-
-<h1>{{todaysDate | date:'fullDate'}}</h1>
-
-<h1>{{todaysDate | date:'d/M/y' }}</h1>
-
-<h1>{{todaysDate | date:'fullDate'}}</h1>
-<h1>{{todaysDate | date:'fullDate' | uppercase}}</h1> -->
-
-
-
-
-<!-- <h1>{{GetUpperCaseUserName()}}</h1> -->
-
-<!-- <router-outlet></router-outlet> -->
-
-
-<!-- <add-song-form (onFormAdd)="newSongAdded($event)"></add-song-form>
-
-<hr>
-
-<song-item *ngFor="let song of songs;let i = index" imageurl="{{song.image}}" songname="{{song.name}}"
-    rating="{{song.rating}}"></song-item> -->
-
-
-
-
-
-
-
-<!-- <input type="text" placeholder="UserName" value="{{username}}" (keyup)="ChangeUserName($event)"> -->
-
-<!-- <input type="text" placeholder="UserName" [(ngModel)]="username">
-<span style="color: red;" *ngIf="!username && isErrorToShow">Required</span>
-
-<span style="color: red;" *ngIf="username.length < 3 && isErrorToShow">User name must be at least of length 3
-    letters.</span>
-<br>
-<br>
-<input type="text" placeholder="Password" [(ngModel)]="password"> <span style="color: red;"
-    *ngIf="!password && isErrorToShow">Required</span>
-<br>
-<br>
-
-<button (click)="AddUser()">Add User</button>
-
-
-<hr>
-
-<h1 *ngFor="let user of users">UserName = {{user.username}} Password = {{user.password}}</h1> -->
-
-
-<form [formGroup]="userForm">
-    <input type="text" placeholder="UserName" formControlName="username">
-
-
-    <!-- <span style="color: red;"
-        *ngIf="userForm.get('username')?.invalid && (userForm.get('username')?.touched || userForm.get('username')?.dirty) ">Required</span> -->
-
-    <div *ngIf="userForm.get('username')?.touched || userForm.get('username')?.dirty">
-        <span *ngIf="userForm.get('username')?.errors?.['required']">Required</span>
-        <span *ngIf="userForm.get('username')?.errors?.['minlength']">Invalid Length</span>
-        <span *ngIf="userForm.get('username')?.errors?.['email']">Invalid Email</span>
-    </div>
-
-    <br>
-    <br>
-    
-    <input type="texdatt" placeholder="Password" formControlName="password">
-
-
-    <select formControlName="language">
-        <option value="">Select Language</option>
-        <option value="en">English</option>
-        <option value="es">Spanish</option>
-    </select>
-    <span *ngIf="userForm.get('language')?.errors?.['required']">Language Required</span>
-    <br>
-    <br>
-
-    <button (click)="AddUser()">Add User</button>
-</form>
-
-<hr>
-<h1 *ngFor="let user of users">UserName = {{user.username}} Password = {{user.password}}</h1>
+    <button (click)="FetchANewUser()">Get New User</button>
+</div>
