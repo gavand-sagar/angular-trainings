@@ -10,15 +10,43 @@ export class AppComponent {
 
   // isAdmin = false;
 
-
+  // tempShared: FormBuilder
 
   userForm: FormGroup;
 
-  constructor(private formBuilder: FormBuilder) {
-    this.userForm = this.formBuilder.group({
+
+  constructor(private therInsanceGotFromDependancyInject: FormBuilder) {
+
+    //  this.tempShared = therInsanceGotFromDependancyInject;
+
+    // this.formBuilder
+
+    // formBuilder =  new FormBuilder(); 
+
+    // let formBuilder = new FormBuilder();
+
+    this.userForm = therInsanceGotFromDependancyInject.group({
       username: ['', [Validators.required, Validators.minLength(4), Validators.email]],
-      password: ['']
+      password: ['Admin123', [Validators.required]],
+      language: ['',[Validators.required]]
+    });
+
+
+    this.userForm.valueChanges.subscribe(x => {
+      console.log(x)
     })
+
+
+    // this.userForm.get('username')?.valueChanges.subscribe(x=>{
+    //   console.log(x)
+    // })
+
+
+  }
+
+
+  asfsaf() {
+    this.therInsanceGotFromDependancyInject
   }
 
 
@@ -38,6 +66,8 @@ export class AppComponent {
   // }
 
   AddUser() {
+    // this.userForm.get('username')?.errors?.['required'] 
+
 
     // if(this.userForm.get('username')?.invalid){
     //   alert('invalid')

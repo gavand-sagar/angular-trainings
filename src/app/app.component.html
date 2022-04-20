@@ -159,7 +159,16 @@
 
     <br>
     <br>
-    <input type="text" placeholder="Password" formControlName="password">
+    
+    <input type="texdatt" placeholder="Password" formControlName="password">
+
+
+    <select formControlName="language">
+        <option value="">Select Language</option>
+        <option value="en">English</option>
+        <option value="es">Spanish</option>
+    </select>
+    <span *ngIf="userForm.get('language')?.errors?.['required']">Language Required</span>
     <br>
     <br>
 
