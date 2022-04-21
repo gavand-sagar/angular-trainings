@@ -8,12 +8,13 @@
 
     <div *ngIf="loading" class="lds-dual-ring"></div>
     <h1 *ngIf="!loading">{{fact}}</h1>
+    <h1 *ngIf="!loading">{{fact}}</h1>
 
 </div>
 
 <i class="fa fa-map-marker"></i> -->
 
-
+<!-- 
 <div>
     <img src="{{userInFormation.userImage}}">
     {{userInFormation.userName}}
@@ -21,4 +22,17 @@
 <div>
 
     <button (click)="FetchANewUser()">Get New User</button>
-</div>
+</div> -->
+
+
+
+<input type="text" [(ngModel)]="username">
+<br>
+<button (click)="PostToServer()">Post</button>
+
+<hr>
+
+<h1>Users</h1>
+<br>
+
+<div *ngFor="let user of users">{{user}}</div>

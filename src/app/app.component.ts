@@ -8,6 +8,49 @@ import { Observable } from 'rxjs';
   styleUrls: ['./app.component.css']
 })
 export class AppComponent {
+
+  username: string;
+
+  // user
+
+  users: string[] = [];
+
+  PostToServer() {
+
+    this.http.post('http://localhost:3000/users', {
+      username: this.username
+    }).subscribe(response => {
+      let convertedResponse: string[] = response as string[];
+      this.users = convertedResponse
+    })
+
+    // this.users.push(this.username);
+    // this.username = ''
+  }
+
+
+  constructor(private http: HttpClient) {
+    this.http.get('http://localhost:3000/users').subscribe(response => {
+      let convertedResponse: string[] = response as string[];
+      this.users = convertedResponse
+    })
+  }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
   fact: string;
 
   loading: boolean = false;
@@ -27,9 +70,7 @@ export class AppComponent {
   /**
    *
    */
-  constructor(private http: HttpClient) {
 
-  }
 
 
   FetchANewFact() {
@@ -37,7 +78,7 @@ export class AppComponent {
     this.loading = true;
 
 
-    this.http.get('https://catfact.ninja/fact').subscribe(response => {
+    this.http.get('http://localhost:3000/cat-fact').subscribe(response => {
 
 
       let convertedResponse: CatFactResponse = response as CatFactResponse;
@@ -45,6 +86,7 @@ export class AppComponent {
       this.fact = convertedResponse.fact;
       this.loading = false;
     });
+
   }
 
 
