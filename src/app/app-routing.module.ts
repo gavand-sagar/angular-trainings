@@ -1,12 +1,9 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
-import { AppComponent } from './app.component';
-import { NotFoundComponent } from './not-found/not-found.component';
 import { ProductsComponent } from './products/products.component';
-import { UsersComponent } from './users/users.component';
 
 const routes: Routes = [
-  { path: 'users', component: UsersComponent },
+  { path: 'users', loadChildren: () => import('./users/user.module').then(m => m.UserModule) },
   { path: 'products', component: ProductsComponent },
 
   { path: 'popular-path', redirectTo: 'products' }
