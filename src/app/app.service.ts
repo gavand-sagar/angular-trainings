@@ -1,24 +1,11 @@
-// import { HttpClient } from "@angular/common/http";
+import { Injectable } from "@angular/core";
 
-// // @im
-// export class AppService{
-//     constructor(private http: HttpClient) {
+@Injectable({ providedIn: 'root' })
+export class AppService {
 
-//     }
-  
-  
-//     FetchANewFact() {
-  
-//       this.loading = true;
-  
-  
-//       this.http.get('https://catfact.ninja/fact').subscribe(response => {
-  
-  
-//         let convertedResponse: CatFactResponse = response as CatFactResponse;
-  
-//         this.fact = convertedResponse.fact;
-//         this.loading = false;
-//       });
-//     }
-// }
+
+
+    Click() {
+        alert();
+    }
+}

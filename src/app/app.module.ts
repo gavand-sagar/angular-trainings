@@ -8,6 +8,7 @@ import { RatingComponent } from './rating/rating.component';
 import { AddSongComponent } from './song-add-form/song-add-form.component';
 import { SongItemComponent } from './song-item/song-item.component';
 import { SortButtonComponent } from './sort-button/sort-button.component';
+import { BackColorChangeToRedDirective } from './back-color-change-to-red.directive';
 
 
 @NgModule({
@@ -16,7 +17,8 @@ import { SortButtonComponent } from './sort-button/sort-button.component';
     SortButtonComponent,
     SongItemComponent,
     RatingComponent,
-    AddSongComponent
+    AddSongComponent,
+    BackColorChangeToRedDirective
   ],
   imports: [
     BrowserModule,

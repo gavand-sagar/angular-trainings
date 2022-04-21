@@ -1,6 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Component } from '@angular/core';
 import { Observable } from 'rxjs';
+import { AppService } from './app.service';
 
 @Component({
   selector: 'sagar',
@@ -29,7 +30,7 @@ export class AppComponent {
   }
 
 
-  constructor(private http: HttpClient) {
+  constructor(private http: HttpClient, private appservice: AppService) {
     this.http.get('http://localhost:3000/users').subscribe(response => {
       let convertedResponse: string[] = response as string[];
       this.users = convertedResponse

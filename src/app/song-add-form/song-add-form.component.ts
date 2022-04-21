@@ -50,6 +50,7 @@ export class AddSongComponent {
 
   AddSomething() {
 
+    // this.appservice.Click()
 
     let song = { name: this.inputSongValue, rating: this.inputRatingValue, image: this.inputFileValue };
 
