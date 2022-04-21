@@ -14,7 +14,7 @@ export class BackColorChangeToRedDirective {
   // }
 
 
-  @HostListener('mouseenter')
+  @HostListener('mouseenter') 
   mouserEnter() {
     this.type = 'text';
     this.placeholder = 'something else...'
