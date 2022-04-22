@@ -1,4 +1,4 @@
-import { Component, EventEmitter, Output } from '@angular/core';
+import { Component, EventEmitter, Input, Output } from '@angular/core';
 
 @Component({
   selector: 'add-song-form',
@@ -10,6 +10,9 @@ export class AddSongComponent {
   inputSongValue: string = "";
   inputRatingValue: string = "";
   inputFileValue: string = "";
+
+  @Input()
+  useName: string = ''
 
 
   @Output()

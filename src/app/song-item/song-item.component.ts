@@ -1,4 +1,5 @@
 import { Component, EventEmitter, Input, Output, ViewChild } from '@angular/core';
+import { AppService } from '../app.service';
 import { RatingComponent } from '../rating/rating.component';
 
 @Component({
@@ -19,6 +20,20 @@ export class SongItemComponent {
   rating: string = '';
 
 
+  useName: string = ''
+
+
+  /**
+   *
+   */
+  constructor(private appservice: AppService) {
+    // this.useName = this.appservice.username
+
+    appservice.usenameSubject.subscribe(x => {      
+      this.onRatingChange.emit('5')
+      this.useName = x;
+    })
+  }
   @Output()
   onRatingChange: EventEmitter<string> = new EventEmitter<string>();
 

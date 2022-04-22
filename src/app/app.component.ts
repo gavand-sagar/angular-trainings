@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { AppService } from './app.service';
 
 @Component({
   selector: 'sagar',
@@ -14,36 +15,22 @@ export class AppComponent {
 
   userForm: FormGroup;
 
-
-  constructor(private therInsanceGotFromDependancyInject: FormBuilder) {
-
-    //  this.tempShared = therInsanceGotFromDependancyInject;
-
-    // this.formBuilder
-
-    // formBuilder =  new FormBuilder(); 
-
-    // let formBuilder = new FormBuilder();
-
-    this.userForm = therInsanceGotFromDependancyInject.group({
-      username: ['', [Validators.required, Validators.minLength(4), Validators.email]],
-      password: ['Admin123', [Validators.required]],
-      language: ['',[Validators.required]]
-    });
+  useName: string = ''
 
 
-    this.userForm.valueChanges.subscribe(x => {
-      console.log(x)
+  constructor(private therInsanceGotFromDependancyInject: FormBuilder, private appservice: AppService) {
+
+    appservice.usenameSubject.subscribe(x => {
+
+      this.useName = x;
     })
-
-
-    // this.userForm.get('username')?.valueChanges.subscribe(x=>{
-    //   console.log(x)
-    // })
-
 
   }
 
+
+  changeServiceDate() {
+    this.appservice.Change();
+  }
 
   asfsaf() {
     this.therInsanceGotFromDependancyInject
